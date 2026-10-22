@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required by Android Visualizer for playback MIX FFT, not microphone capture. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+
+    <application
+        android:label="ST-ANALYSER"
+        android:theme="@android:style/Theme.Material.NoActionBar"
+        android:usesCleartextTraffic="false">
+        <!-- Optional: user explicitly enables Notification Access for live track
+             metadata and media transport through MediaSessionManager. -->
+        <service
+            android:name="com.spectrum85.app.SpectrumNotificationListener"
+            android:label="ST-ANALYSER music sessions"
+            android:exported="false"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <activity
+            android:name="com.spectrum85.app.MainActivity"
+            android:exported="true"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
